@@ -332,7 +332,7 @@ public class VentanaAdministracion extends javax.swing.JFrame {
 */
     }
     
-        
+        //a
         
     public void compra(){
        Operaciones op = new Operaciones();

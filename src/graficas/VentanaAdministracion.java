@@ -25,6 +25,7 @@ import java.text.DateFormat;
 public class VentanaAdministracion extends javax.swing.JFrame {
     private Opciones opcion;
     private OpcionesTipoDocu opcion1;
+    public int cupoVal = 0;
     /**
      * Creates new form VentanaCreacionTarjeta
      */
@@ -297,12 +298,12 @@ public class VentanaAdministracion extends javax.swing.JFrame {
           
           //Cupo de la tarjeta
           Integer salario = Integer.parseInt(salarioS);
-          int cupo = ope.CalculoCupo(salario);
-          ope.setCupo(cupo);
+          cupoVal = ope.CalculoCupo(salario);
+          ope.setCupo(cupoVal);
           
           //Creacion de la Tarjeta
          GestionDeTarjeta gt = new GestionDeTarjeta();
-         CrearTarjeta ct = gt.crearTarjetaCredito(nombre, identi, numTarjeta, cupo, fechaCreaci, this.opcion, this.opcion1);
+         CrearTarjeta ct = gt.crearTarjetaCredito(nombre, identi, numTarjeta, cupoVal, fechaCreaci, this.opcion, this.opcion1);
          if (ct != null){
           
              JOptionPane.showMessageDialog(this, "Creo la tarjeta: \n "+ct+" ");
@@ -318,14 +319,14 @@ public class VentanaAdministracion extends javax.swing.JFrame {
     
     
     public void pagoTarjeta(){
-        
         Operaciones op = new Operaciones();
         int pago= Integer.parseInt(JOptionPane.showInputDialog("Ingrese el valor que pagara a la tarjeta"));
         //int cupoTar= op.obtCupo();
-        String resultPag= op.pago(pago);
+        String resultPag= op.pago(pago, cupoVal);
         op.setCupo(Integer.parseInt(resultPag));
-        JOptionPane.showMessageDialog(null, "Se pago la tarjeta con: "+resultPag+"\n El nuevo valor del"
-                +" cupo de la tarjeta es de: "+op.getCupo());
+        cupoVal = op.getCupo();
+        JOptionPane.showMessageDialog(null, "Se pago la tarjeta con: "+pago+"\n El nuevo valor del"
+                +" cupo de la tarjeta es de: "+cupoVal);
         
         /*JOptionPane.showMessageDialog(null, "Se pago la tarjeta \n El nuevo valor de la "
                 + "tarjeta del cupo de la tarjeta es de: (Valor Cupo Actual) ");
@@ -336,19 +337,18 @@ public class VentanaAdministracion extends javax.swing.JFrame {
         
     public void compra(){
        Operaciones op = new Operaciones();
-
-       String cupoAct = Integer.toString(op.getCupo());
-       int compra= Integer.parseInt(JOptionPane.showInputDialog("El valor del cupo es de: "+cupoAct+"\nIngrese el valor de la compra"));
+       
+       int compra= Integer.parseInt(JOptionPane.showInputDialog("El valor del cupo es de: "+cupoVal+"\nIngrese el valor de la compra"));
        //int cupoTar= op.obtCupo();
-       if(compra == 0){
+       if(compra == 0 || compra > cupoVal){
            JOptionPane.showMessageDialog(null, "No se puede proceder con la compra");
        }else{
        op.setValCompra(compra);
-
-       String resultComp = op.compra(compra);
+       String resultComp = op.compra(compra, cupoVal);
        op.setCupo(Integer.parseInt(resultComp));
+       cupoVal = op.getCupo();
        JOptionPane.showMessageDialog(null, "El valor de la compra realizada fue de: "+String.valueOf(compra) 
-              + "\n El cupo actual de la tarjeta es de: "+resultComp);
+              + "\n El cupo actual de la tarjeta es de: "+op.getCupo());
        
       }
     }

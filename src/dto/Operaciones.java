@@ -40,19 +40,21 @@ public class Operaciones {
         this.valorPago=valorPago;
     }
 
-    public String compra(int valorCompra){
-       if(this.cupo < valorCompra){
+    public String compra(int valorCompra, int cupoVal){
+       if(cupoVal < valorCompra){
            return null;
        }else{
-           this.cupo = this.cupo - valorCompra;
-           String valComp = Integer.toString(this.cupo); 
+           cupoVal = cupoVal - valorCompra;
+           this.cupo = cupoVal;
+           String valComp = Integer.toString(cupoVal); 
            return valComp; 
        }  
     }
     
-    public String pago(int valorPago){
-        this.cupo = this.cupo + valorPago;
-        String pagoVal = Integer.toString(this.cupo);
+    public String pago(int valorPago, int cupoVal){
+        cupoVal = cupoVal+valorPago;
+        this.cupo = cupoVal;
+        String pagoVal = Integer.toString(cupoVal);
         return pagoVal;
     }
     

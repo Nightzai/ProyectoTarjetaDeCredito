@@ -312,8 +312,7 @@ public class VentanaAdministracion extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No se creo la tarjeta");
          }
         }
-                
-        //iiikgggtgsssewsswaaswddf        
+       
         
     }
     

@@ -352,12 +352,17 @@ public class VentanaAdministracion extends javax.swing.JFrame {
           //Numeros de la tarjeta
           Operaciones ope = new Operaciones();
           String numTarjeta = ope.NumerosTar();
-          
+        
           //Cupo de la tarjeta
-          Integer salario = Integer.parseInt(salarioS);
+          Integer salario;
+          if(salarioS == null){
+              salario=0;
+          }else{
+              salario = Integer.parseInt(salarioS);
+          }
           cupoVal = ope.CalculoCupo(salario);
           ope.setCupo(cupoVal);
-          
+   
           //Creacion de la Tarjeta
          GestionDeTarjeta gt = new GestionDeTarjeta();
          CrearTarjeta ct = gt.crearTarjetaCredito(nombre, identi, numTarjeta, cupoVal, fechaCreaci, this.opcion, this.opcion1);
@@ -368,7 +373,6 @@ public class VentanaAdministracion extends javax.swing.JFrame {
              boolean b = utilidades.GArchivos.guardar("listaTarjetas.txt", listaTarjetas);
              JOptionPane.showMessageDialog(this, "Creo la tarjeta: \n "+ct+" ");
              cargarTarjetas();
-        
          }else{
             JOptionPane.showMessageDialog(this, "No se creo la tarjeta");
          }
@@ -425,10 +429,10 @@ public class VentanaAdministracion extends javax.swing.JFrame {
     
     
     private void cargarTarjetas(){
-//        while(tableModel.getRowCount()>0){
-//            tableModel.removeRow(0);
-//        }
-//        
+        while(tableModel.getRowCount()>0){
+            tableModel.removeRow(0);
+        }
+        
         
         for (CrearTarjeta ct: listaTarjeta) {
             Object a[] = new Object[6];

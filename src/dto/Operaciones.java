@@ -22,6 +22,7 @@ public class Operaciones implements Serializable{
     }
     
     public void setValCompra(int valorCompra){
+        
         this.valorCompra=valorCompra;
     }
     

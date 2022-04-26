@@ -19,15 +19,15 @@ import util.GestorPersistencia;
  * @author pipet
  */
 public class GestionDeTarjeta {
-    private Map<String, CrearTarjeta> listaTarjetas;
-    public GestionDeTarjeta(){
-        if (listaTarjetas == null){
-            listaTarjetas = (Map<String, CrearTarjeta> )GestorPersistencia.recuperar();
-            if (listaTarjetas == null){
-                listaTarjetas = new HashMap<>();
-            }
-        }
-    }
+//    private Map<String, CrearTarjeta> listaTarjetas;
+//    public GestionDeTarjeta(){
+//        if (listaTarjetas == null){
+//            listaTarjetas = (Map<String, CrearTarjeta> )GestorPersistencia.recuperar();
+//            if (listaTarjetas == null){
+//                listaTarjetas = new HashMap<>();
+//            }
+//        }
+//    }
     
     
     public CrearTarjeta crearTarjetaCredito(String titular, String identi, String numTarjeta, int salario, Date fechaCrea, 
@@ -38,8 +38,8 @@ public class GestionDeTarjeta {
         }else{
             Tarjeta tCredito = this.crearTarjeta(titular, identi, salario);
             CrearTarjeta c = new CrearTarjeta(tCredito, fechaCrea, opcion, numTarjeta, opcion1);
-            listaTarjetas.put(c.getNumTarjeta(), c);
-            GestorPersistencia.guardar(listaTarjetas);
+//            listaTarjetas.put(c.getNumTarjeta(), c);
+//            GestorPersistencia.guardar(listaTarjetas);
             return c;
             
         }
@@ -53,9 +53,9 @@ public class GestionDeTarjeta {
         t.setSaldo(salario);
         return t;
     }
-    public Map<String, CrearTarjeta> obtenerLista(){
-        return this.listaTarjetas;
-    }
+//    public Map<String, CrearTarjeta> obtenerLista(){
+//        return this.listaTarjetas;
+//    }
     
 }
 

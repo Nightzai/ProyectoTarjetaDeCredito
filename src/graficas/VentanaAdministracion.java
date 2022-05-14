@@ -362,21 +362,31 @@ public class VentanaAdministracion extends javax.swing.JFrame {
           }
           cupoVal = ope.CalculoCupo(salario);
           ope.setCupo(cupoVal);
-   
+          
+          if(this.opcion1 == null){
+              JOptionPane.showMessageDialog(null, "Elija el tipo de documento");
+          }else{
+               if(this.opcion == null){
+              JOptionPane.showMessageDialog(null, "Elija el tipo de tarjeta");
+          }else{
           //Creacion de la Tarjeta
          GestionDeTarjeta gt = new GestionDeTarjeta();
          CrearTarjeta ct = gt.crearTarjetaCredito(nombre, identi, numTarjeta, cupoVal, fechaCreaci, this.opcion, this.opcion1);
          listaTarjeta.add(ct);
          if (ct != null){
              this.cargarTarjetas();
-             listaTarjetas.add(ct);
-             boolean b = utilidades.GArchivos.guardar("listaTarjetas.txt", listaTarjetas);
+             String arch = ("-------------------------\n"+"Titular: "+ct.getTarjeta().getTitular()+"\n"+"Identificacion: "+ct.getTarjeta().getIdenti()+"\n"+"Tipo de Documento: "+ct.getOpcionDocu()+"\n"+"Numero de Tarjeta: "+ct.getNumTarjeta()+"\n"+"Cupo generado: "+cupoVal+"\n"+"Fecha de creacion: "+util.Util.convertirDateString(ct.getFechaCrea())+"\n"+"Tipo de Tarjeta: "+ct.getOpcion()+"\n"+"-------------------------");
+             ope.guardarArchivoPlano(arch);
+             //listaTarjetas.add(ct);
+             //boolean b = utilidades.GArchivos.guardar("listaTarjetas.txt", listaTarjetas);
              JOptionPane.showMessageDialog(this, "Creo la tarjeta: \n "+ct+" ");
              cargarTarjetas();
          }else{
             JOptionPane.showMessageDialog(this, "No se creo la tarjeta");
+            }
          }
         }
+       }
        
         
     }

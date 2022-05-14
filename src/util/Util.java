@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class Util {
      public static String convertirDateString(Date fecha){
-        SimpleDateFormat sd = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+        SimpleDateFormat sd = new SimpleDateFormat("dd/MM/yyyy");
         if (fecha == null){
             return sd.format(new Date());
         }else{

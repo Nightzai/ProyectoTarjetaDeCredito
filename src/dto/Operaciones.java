@@ -5,8 +5,14 @@
 package dto;
 
 //import static java.lang.Math.pow;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -76,6 +82,37 @@ public class Operaciones implements Serializable{
         this.cupo = this.cupo+valCup;
         return valCup;
     } 
+    
+    public void guardarArchivoPlano(String archivo) {
+       File f;
+       FileWriter escribir;
+       PrintWriter linea;
+  
+       f= new File("Tarjetas.txt");
+           
+       if(!f.exists()){
+           try {
+               f.createNewFile();
+               escribir = new FileWriter(f, true);
+               linea = new PrintWriter(escribir);
+               linea.println(archivo);
+               escribir.close();
+           } catch (IOException ex) {
+               Logger.getLogger(Tarjeta.class.getName()).log(Level.SEVERE, null, ex);
+           }
+       }else{
+           try {
+               escribir = new FileWriter(f, true);
+               linea = new PrintWriter(escribir);
+               linea.println(archivo);
+               escribir.close();
+           } catch (IOException ex) {
+               Logger.getLogger(Tarjeta.class.getName()).log(Level.SEVERE, null, ex);
+           }
+            
+       }
+
+    }
      
      @Override
      public String toString(){

@@ -1,0 +1,72 @@
+-------------------------
+Titular: E
+Identificacion: 234423423
+Tipo de Documento: CC
+Numero de Tarjeta: 8888 7568 7561 9171
+Cupo generado: 960000
+Fecha de creacion: 14/05/2022 01:58
+Tipo de Tarjeta: MASTERCARD
+-------------------------
+-------------------------
+Titular: E
+Identificacion: 423432324
+Tipo de Documento: TI
+Numero de Tarjeta: 8678 1332 6692 9343
+Cupo generado: 960000
+Fecha de creacion: 14/05/2022
+Tipo de Tarjeta: MASTERCARD
+-------------------------
+-------------------------
+Titular: E
+Identificacion: 423432324
+Tipo de Documento: TI
+Numero de Tarjeta: 9926 2831 1052 8223
+Cupo generado: 960000
+Fecha de creacion: 14/05/2022
+Tipo de Tarjeta: MASTERCARD
+-------------------------
+-------------------------
+Titular: E
+Identificacion: 423432324
+Tipo de Documento: TI
+Numero de Tarjeta: 7298 1696 5722 5361
+Cupo generado: 960000
+Fecha de creacion: 14/05/2022
+Tipo de Tarjeta: MASTERCARD
+-------------------------
+-------------------------
+Titular: E
+Identificacion: 423432324
+Tipo de Documento: TI
+Numero de Tarjeta: 9353 8001 4983 3735
+Cupo generado: 960000
+Fecha de creacion: 14/05/2022
+Tipo de Tarjeta: MASTERCARD
+-------------------------
+-------------------------
+Titular: E
+Identificacion: 423432324
+Tipo de Documento: TI
+Numero de Tarjeta: 3353 8348 2836 7033
+Cupo generado: 960000
+Fecha de creacion: 14/05/2022
+Tipo de Tarjeta: MASTERCARD
+-------------------------
+-------------------------
+Titular: E
+Identificacion: 423432324
+Tipo de Documento: TI
+Numero de Tarjeta: 3447 7555 2876 9331
+Cupo generado: 960000
+Fecha de creacion: 14/05/2022
+Tipo de Tarjeta: MASTERCARD
+-------------------------
+-------------------------
+Titular: E
+Identificacion: 423432324
+Tipo de Documento: TI
+Numero de Tarjeta: 7206 9981 9625 1765
+Cupo generado: 960000
+Fecha de creacion: 14/05/2022
+Tipo de Tarjeta: MASTERCARD
+-------------------------

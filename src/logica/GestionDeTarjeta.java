@@ -32,7 +32,7 @@ public class GestionDeTarjeta {
     
     public CrearTarjeta crearTarjetaCredito(String titular, String identi, String numTarjeta, int salario, Date fechaCrea, 
             Opciones opcion, OpcionesTipoDocu opcion1){
-          if(titular == null || identi == null || numTarjeta == null || salario == 0 
+          if(titular == null || identi == null || numTarjeta == null
                   || fechaCrea == null || opcion == null || opcion1 == null || titular.isEmpty() || identi.isEmpty()){
             return null;
         }else{

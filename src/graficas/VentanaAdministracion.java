@@ -13,6 +13,7 @@ import logica.GestionDeTarjeta;
 import dto.CrearTarjeta;
 import dto.Opciones;
 import dto.OpcionesTipoDocu;
+import dto.Tarjeta;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Map;
@@ -28,11 +29,17 @@ import utilidades.GArchivos;
  */
 public class VentanaAdministracion extends javax.swing.JFrame {
     private Opciones opcion;
+    private OpcionesTipoDocu opcionE;
     private OpcionesTipoDocu opcion1;
-    public int cupoVal = 0;
+    private int cupoVal = 0;
+    private int deudaVal=0; 
+    private int[] deudaA = new int[3];
+    private String[] tarjetasG = new String[3];
+
     //private DefaultTableModel modelTabla;
     DefaultTableModel tableModel  = new DefaultTableModel();
     ArrayList<CrearTarjeta> listaTarjeta = new ArrayList<CrearTarjeta>();
+    ArrayList registroTarjetas = new ArrayList();
     /**
      * Creates new form VentanaCreacionTarjeta
      */
@@ -44,6 +51,8 @@ public class VentanaAdministracion extends javax.swing.JFrame {
         tableModel.addColumn("Num I.");
         tableModel.addColumn("Tipo T.");
         tableModel.addColumn("Fecha C.");
+        bCompra.setEnabled(false);
+        bPago.setEnabled(false);
 //        String[] titulo= new String[]{"Num T.", "Nombre", "Tipo I.", "Num I.", "Tipo T.", "Fecha C."};
 //        tableModel.setColumnIdentifiers(titulo);
         this.cargarTarjetas();
@@ -62,8 +71,8 @@ public class VentanaAdministracion extends javax.swing.JFrame {
         grupoBotones2 = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        bCodeUserS = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         cjNombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         cjIdenti = new javax.swing.JTextField();
@@ -83,6 +92,15 @@ public class VentanaAdministracion extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTabla = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        cjCodeUser = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        sCC = new javax.swing.JRadioButton();
+        sTI = new javax.swing.JRadioButton();
+        sOtro = new javax.swing.JRadioButton();
+        bComprobar = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -100,13 +118,10 @@ public class VentanaAdministracion extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Sistema de Administracion de Tarjeta de Credito");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(230, 10, 340, 16);
-
-        jLabel2.setText("Nombre completo del titular: ");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(10, 50, 170, 16);
         getContentPane().add(cjNombre);
         cjNombre.setBounds(180, 50, 540, 22);
 
@@ -129,7 +144,7 @@ public class VentanaAdministracion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(bCreacionTarjeta);
-        bCreacionTarjeta.setBounds(480, 130, 170, 25);
+        bCreacionTarjeta.setBounds(460, 140, 220, 50);
 
         cjSalir.setText("Salir");
         cjSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -147,7 +162,7 @@ public class VentanaAdministracion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(bCompra);
-        bCompra.setBounds(480, 170, 170, 25);
+        bCompra.setBounds(280, 500, 170, 25);
 
         bPago.setText("Pago Tarjeta");
         bPago.addActionListener(new java.awt.event.ActionListener() {
@@ -156,7 +171,7 @@ public class VentanaAdministracion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(bPago);
-        bPago.setBounds(480, 210, 170, 25);
+        bPago.setBounds(520, 500, 170, 25);
 
         grupoBotones.add(bMaster);
         bMaster.setText("MASTERCARD");
@@ -230,13 +245,77 @@ public class VentanaAdministracion extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTabla);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(20, 260, 690, 120);
+        jScrollPane2.setBounds(20, 260, 690, 110);
 
         jLabel7.setText("(sin puntos ni comas)");
         getContentPane().add(jLabel7);
         jLabel7.setBounds(10, 150, 120, 20);
 
-        setSize(new java.awt.Dimension(748, 445));
+        jLabel8.setText("Nombre completo del titular: ");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(10, 50, 170, 16);
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel9.setText("Registro de Compras y Pagos");
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(270, 380, 170, 16);
+
+        cjCodeUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cjCodeUserActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cjCodeUser);
+        cjCodeUser.setBounds(250, 420, 340, 30);
+
+        jLabel10.setText("Ingrese su numero de identificación ");
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(20, 420, 220, 16);
+
+        jLabel11.setText("y seleccione el tipo de identificación");
+        getContentPane().add(jLabel11);
+        jLabel11.setBounds(20, 440, 210, 16);
+
+        bCodeUserS.add(sCC);
+        sCC.setText("C.C.");
+        sCC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sCCActionPerformed(evt);
+            }
+        });
+        getContentPane().add(sCC);
+        sCC.setBounds(250, 460, 80, 25);
+
+        bCodeUserS.add(sTI);
+        sTI.setText("T.I.");
+        sTI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sTIActionPerformed(evt);
+            }
+        });
+        getContentPane().add(sTI);
+        sTI.setBounds(380, 460, 90, 25);
+
+        bCodeUserS.add(sOtro);
+        sOtro.setText("Otro");
+        sOtro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sOtroActionPerformed(evt);
+            }
+        });
+        getContentPane().add(sOtro);
+        sOtro.setBounds(500, 460, 49, 25);
+
+        bComprobar.setText("Comprobar Tarjeta");
+        bComprobar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bComprobarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(bComprobar);
+        bComprobar.setBounds(40, 500, 160, 25);
+
+        setSize(new java.awt.Dimension(748, 589));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -275,6 +354,26 @@ public class VentanaAdministracion extends javax.swing.JFrame {
     private void bOtroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOtroActionPerformed
        this.clickOpcionDocu(3);
     }//GEN-LAST:event_bOtroActionPerformed
+
+    private void cjCodeUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cjCodeUserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cjCodeUserActionPerformed
+
+    private void bComprobarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bComprobarActionPerformed
+        buscarTarjeta();
+    }//GEN-LAST:event_bComprobarActionPerformed
+
+    private void sCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sCCActionPerformed
+       this.clickOpcionDocuE(1);
+    }//GEN-LAST:event_sCCActionPerformed
+
+    private void sTIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sTIActionPerformed
+         this.clickOpcionDocuE(2);
+    }//GEN-LAST:event_sTIActionPerformed
+
+    private void sOtroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sOtroActionPerformed
+        this.clickOpcionDocuE(3);
+    }//GEN-LAST:event_sOtroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -333,6 +432,17 @@ public class VentanaAdministracion extends javax.swing.JFrame {
             this.opcion1 = OpcionesTipoDocu.Otro;
         }
     }
+     
+     private void clickOpcionDocuE(int opcionE){
+        //JOptionPane.showMessageDialog(this, opcion);
+        if (opcionE == 1){
+            this.opcionE = OpcionesTipoDocu.CC;
+        }else if(opcionE == 2){
+            this.opcionE = OpcionesTipoDocu.TI;
+        }else{
+            this.opcionE = OpcionesTipoDocu.Otro;
+        }
+    }
     
     public void CrearTarjeta(){
      
@@ -354,12 +464,11 @@ public class VentanaAdministracion extends javax.swing.JFrame {
           String numTarjeta = ope.NumerosTar();
         
           //Cupo de la tarjeta
-          Integer salario;
-          if(salarioS == null){
-              salario=0;
-          }else{
+              Integer salario;
               salario = Integer.parseInt(salarioS);
-          }
+          if(salario == 0 || salario < 1000000){
+              JOptionPane.showMessageDialog(null, "Minimo debe ingresar un salario de 1'000.000 para solicitar la tarjeta de credito");
+          }else{
           cupoVal = ope.CalculoCupo(salario);
           ope.setCupo(cupoVal);
           
@@ -374,8 +483,10 @@ public class VentanaAdministracion extends javax.swing.JFrame {
          CrearTarjeta ct = gt.crearTarjetaCredito(nombre, identi, numTarjeta, cupoVal, fechaCreaci, this.opcion, this.opcion1);
          listaTarjeta.add(ct);
          if (ct != null){
+             String newTarjeta = identi+opcion1;
+             registroTarjetas.add(newTarjeta);
              this.cargarTarjetas();
-             String arch = ("-------------------------\n"+"Titular: "+ct.getTarjeta().getTitular()+"\n"+"Identificacion: "+ct.getTarjeta().getIdenti()+"\n"+"Tipo de Documento: "+ct.getOpcionDocu()+"\n"+"Numero de Tarjeta: "+ct.getNumTarjeta()+"\n"+"Cupo generado: "+cupoVal+"\n"+"Fecha de creacion: "+util.Util.convertirDateString(ct.getFechaCrea())+"\n"+"Tipo de Tarjeta: "+ct.getOpcion()+"\n"+"-------------------------");
+             String arch = ("Titular: "+ct.getTarjeta().getTitular()+"\n"+"Identificacion: "+ct.getTarjeta().getIdenti()+"\n"+"Tipo de Documento: "+ct.getOpcionDocu()+"\n"+"Numero de Tarjeta: "+ct.getNumTarjeta()+"\n"+"Cupo generado: "+cupoVal+"\n"+"Fecha de creacion: "+util.Util.convertirDateString(ct.getFechaCrea())+"\n"+"Tipo de Tarjeta: "+ct.getOpcion()+"\n");
              ope.guardarArchivoPlano(arch);
              //listaTarjetas.add(ct);
              //boolean b = utilidades.GArchivos.guardar("listaTarjetas.txt", listaTarjetas);
@@ -390,53 +501,69 @@ public class VentanaAdministracion extends javax.swing.JFrame {
        
         
     }
+   }
     
     
     public void pagoTarjeta(){
+        
         Operaciones op = new Operaciones();
-        String pagoVar = JOptionPane.showInputDialog("Ingrese el valor que pagara a la tarjeta");
+        if(deudaVal==0){
+               JOptionPane.showMessageDialog(null, "No hay deuda a pagar"); 
+          }else{
+        String pagoVar = JOptionPane.showInputDialog("La deuda actual es de: "+deudaVal+"\nIngrese el valor que pagara a la tarjeta");
         if(pagoVar == null){
             JOptionPane.showMessageDialog(null, "No se puede proceder con el pago");
-        }else{
+        }else{      
         int pago= Integer.parseInt(pagoVar);
         if(pago < 0){
             JOptionPane.showMessageDialog(null, " No se puede proceder con el pago, valor no valido");
         }else{
-            
+            if(pago > deudaVal){
+               JOptionPane.showMessageDialog(null, "El valor a pagar es mayor a la deuda"); 
+          }else{
         //int cupoTar= op.obtCupo();
         String resultPag= op.pago(pago, cupoVal);
         op.setCupo(Integer.parseInt(resultPag));
+        deudaVal= deudaVal-pago;
         cupoVal = op.getCupo();
         JOptionPane.showMessageDialog(null, "Se pago la tarjeta con: "+pago+"\n El nuevo valor del"
-                +" cupo de la tarjeta es de: "+cupoVal);
+                +"cupo de la tarjeta es de: "+cupoVal+"\n La deuda es de: "+deudaVal);
         }
        }
+      }
+     }
     }
     
         //a
         
     public void compra(){
+       
        Operaciones op = new Operaciones();
+       if(cupoVal == 0){
+       JOptionPane.showMessageDialog(null, "La tarjeta no tiene cupo");    
+       }else{
        String compraVar = JOptionPane.showInputDialog("El valor del cupo es de: "+cupoVal+"\nIngrese el valor de la compra");
        if(compraVar == null){
             JOptionPane.showMessageDialog(null, "No se puede proceder con la compra");
         }else{
+       
        int compra= Integer.parseInt(compraVar);
        //int cupoTar= op.obtCupo();
        if(compra == 0 || compra > cupoVal || compra < 0){
            JOptionPane.showMessageDialog(null, "No se puede proceder con la compra, valor no valido");
        }else{
        op.setValCompra(compra);
+       deudaVal = deudaVal+compra;
        String resultComp = op.compra(compra, cupoVal);
        op.setCupo(Integer.parseInt(resultComp));
        cupoVal = op.getCupo();
        JOptionPane.showMessageDialog(null, "El valor de la compra realizada fue de: "+String.valueOf(compra) 
               + "\n El cupo actual de la tarjeta es de: "+op.getCupo());
        
-      }
-     }
+                }
+            }
+        }
     }
-    
     
     private void cargarTarjetas(){
         while(tableModel.getRowCount()>0){
@@ -458,46 +585,43 @@ public class VentanaAdministracion extends javax.swing.JFrame {
       jTabla.setModel(tableModel);
     }
     
-//    private void cargarTarjetas(){
-//        DefaultTableModel modelo = new DefaultTableModel();
-//        modelo.addColumn("Num T.");
-//        modelo.addColumn("Nombre");
-//        modelo.addColumn("Tipo I.");
-//        modelo.addColumn("Numero I.");
-//        modelo.addColumn("Tipo T.");
-//        modelo.addColumn("Fecha Creacion");
-//        
-//         GestionDeTarjeta gestor = new GestionDeTarjeta();
-//        Map<String, CrearTarjeta> lista = gestor.obtenerLista();
-//        for (Map.Entry<String, CrearTarjeta> dato  : lista.entrySet()) {
-//            CrearTarjeta latarjeta = dato.getValue();
-//            Object[] datos = {
-//                latarjeta.getNumTarjeta(),
-//          
-//                latarjeta.getTarjeta().getTitular(),
-//                latarjeta.getOpcionDocu().toString(),
-//                latarjeta.getTarjeta().getIdenti(),
-//                latarjeta.getOpcion().toString(),
-//                util.Util.convertirDateString(latarjeta.getFechaCrea())
-//            };
-//            modelo.addRow(datos);
-//            
-//        }
-//        this.jTabla.setModel(modelo);
-//         
-//    }
+    private void buscarTarjeta(){
+        String codeUser = cjCodeUser.getText();
+        if(codeUser == null || codeUser.isEmpty() || codeUser.isBlank()){
+            JOptionPane.showMessageDialog(null, "Por favor digite su identificacion");
+        }else{
+        String tBuscar = codeUser+opcionE;
+        if(opcionE == null){
+            JOptionPane.showMessageDialog(null, "Por favor seleccione un tipo de tarjeta");
+        }else{
+        if(registroTarjetas.contains(tBuscar)){
+            JOptionPane.showMessageDialog(null, "La tarjeta existe, se puede proceder con la acciones");
+            bCompra.setEnabled(true);
+            bPago.setEnabled(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "No hay tarjetas vinculadas a la identificación digitada, por favor cree la tarjeta");
+            bCompra.setEnabled(false);
+            bPago.setEnabled(false);
+        }
+       }
+      }
+    }
+
     
    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton bCedula;
+    private javax.swing.ButtonGroup bCodeUserS;
     private javax.swing.JButton bCompra;
+    private javax.swing.JButton bComprobar;
     private javax.swing.JButton bCreacionTarjeta;
     private javax.swing.JRadioButton bMaster;
     private javax.swing.JRadioButton bOtro;
     private javax.swing.JButton bPago;
     private javax.swing.JRadioButton bTIdentidad;
     private javax.swing.JRadioButton bVisa;
+    private javax.swing.JTextField cjCodeUser;
     private javax.swing.JTextField cjIdenti;
     private javax.swing.JTextField cjNombre;
     private javax.swing.JTextField cjSalario;
@@ -505,15 +629,21 @@ public class VentanaAdministracion extends javax.swing.JFrame {
     private javax.swing.ButtonGroup grupoBotones;
     private javax.swing.ButtonGroup grupoBotones2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTabla;
     private javax.swing.JTable jTable1;
+    private javax.swing.JRadioButton sCC;
+    private javax.swing.JRadioButton sOtro;
+    private javax.swing.JRadioButton sTI;
     // End of variables declaration//GEN-END:variables
 }

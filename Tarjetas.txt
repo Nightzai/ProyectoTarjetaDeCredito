@@ -70,3 +70,94 @@ Cupo generado: 960000
 Fecha de creacion: 14/05/2022
 Tipo de Tarjeta: MASTERCARD
 -------------------------
+-------------------------
+Titular: Emmanuel
+Identificacion: 312321321
+Tipo de Documento: CC
+Numero de Tarjeta: 3294 3854 6117 5972
+Cupo generado: 6000000
+Fecha de creacion: 20/05/2022
+Tipo de Tarjeta: MASTERCARD
+-------------------------
+-------------------------
+Titular: Emmanuel
+Identificacion: 423432432
+Tipo de Documento: TI
+Numero de Tarjeta: 1730 8973 8521 3954
+Cupo generado: 9000000
+Fecha de creacion: 20/05/2022
+Tipo de Tarjeta: MASTERCARD
+-------------------------
+-------------------------
+Titular: E
+Identificacion: 1232323
+Tipo de Documento: CC
+Numero de Tarjeta: 1684 7307 2800 1135
+Cupo generado: 9000000
+Fecha de creacion: 20/05/2022
+Tipo de Tarjeta: MASTERCARD
+-------------------------
+Titular: Emmanuel
+Identificacion: 234324432
+Tipo de Documento: CC
+Numero de Tarjeta: 7902 5850 1121 9177
+Cupo generado: 3000000
+Fecha de creacion: 21/05/2022
+Tipo de Tarjeta: MASTERCARD
+
+Titular: E
+Identificacion: 1000
+Tipo de Documento: CC
+Numero de Tarjeta: 4872 9203 7012 9717
+Cupo generado: 3000000
+Fecha de creacion: 21/05/2022
+Tipo de Tarjeta: VISA
+
+Titular: Emmanuel
+Identificacion: 1000
+Tipo de Documento: CC
+Numero de Tarjeta: 9975 5816 8153 9745
+Cupo generado: 3000000
+Fecha de creacion: 21/05/2022
+Tipo de Tarjeta: VISA
+
+Titular: Emmanuel
+Identificacion: 1000
+Tipo de Documento: CC
+Numero de Tarjeta: 9313 2464 5933 9793
+Cupo generado: 9000000
+Fecha de creacion: 21/05/2022
+Tipo de Tarjeta: VISA
+
+Titular: Emmanuel
+Identificacion: 1000
+Tipo de Documento: CC
+Numero de Tarjeta: 6861 1555 2209 6846
+Cupo generado: 9000000
+Fecha de creacion: 21/05/2022
+Tipo de Tarjeta: VISA
+
+Titular: E
+Identificacion: 1000
+Tipo de Documento: CC
+Numero de Tarjeta: 2022 6742 4681 1273
+Cupo generado: 3000000
+Fecha de creacion: 21/05/2022
+Tipo de Tarjeta: MASTERCARD
+
+Titular: Emmanuel
+Identificacion: 1000
+Tipo de Documento: CC
+Numero de Tarjeta: 9029 1716 7715 6552
+Cupo generado: 9000000
+Fecha de creacion: 21/05/2022
+Tipo de Tarjeta: MASTERCARD
+
+Titular: Emmanuel
+Identificacion: 2000
+Tipo de Documento: TI
+Numero de Tarjeta: 2631 5683 3547 3003
+Cupo generado: 12000000
+Fecha de creacion: 21/05/2022
+Tipo de Tarjeta: VISA
+

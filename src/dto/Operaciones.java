@@ -22,15 +22,7 @@ public class Operaciones implements Serializable{
     private int valorCompra;
     private int valorPago;
     private int cupo;
-    private int deuda;
 
-    public int getDeuda() {
-        return deuda;
-    }
-
-    public void setDeuda(int deuda) {
-        this.deuda = deuda;
-    }
     
     public int getValCompra(){
         return this.valorCompra;

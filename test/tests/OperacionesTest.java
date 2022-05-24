@@ -51,7 +51,9 @@ public class OperacionesTest {
  public void calculoSalarioCero(){
     Operaciones oper = new Operaciones();
     int respu = oper.CalculoCupo(0);
-    assertNotNull(respu); 
+    assertNotNull(respu);
+      System.out.println("Evaluación calculo salario 0");
+    assertEquals(0, 0);
  } 
  
 }

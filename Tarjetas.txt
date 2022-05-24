@@ -161,3 +161,27 @@ Cupo generado: 12000000
 Fecha de creacion: 21/05/2022
 Tipo de Tarjeta: VISA
 
+Titular: E
+Identificacion: 1000
+Tipo de Documento: CC
+Numero de Tarjeta: 6284 6793 2988 9748
+Cupo generado: 9000000
+Fecha de creacion: 23/05/2022
+Tipo de Tarjeta: MASTERCARD
+
+Titular: E
+Identificacion: 2000
+Tipo de Documento: CC
+Numero de Tarjeta: 5472 8125 8920 2789
+Cupo generado: 3000000
+Fecha de creacion: 23/05/2022
+Tipo de Tarjeta: VISA
+
+Titular: E
+Identificacion: 1000
+Tipo de Documento: CC
+Numero de Tarjeta: 7384 1015 9104 1739
+Cupo generado: 3000000
+Fecha de creacion: 23/05/2022
+Tipo de Tarjeta: VISA
+

@@ -1,6 +1,8 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+
+  Desarrollado por Emmanuel Carrillo
  */
 package graficas;
 
@@ -16,6 +18,7 @@ import dto.OpcionesTipoDocu;
 import dto.Tarjeta;
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import javax.swing.table.DefaultTableModel;
 import utilidades.GArchivos;
@@ -31,11 +34,9 @@ public class VentanaAdministracion extends javax.swing.JFrame {
     private Opciones opcion;
     private OpcionesTipoDocu opcionE;
     private OpcionesTipoDocu opcion1;
-    private int cupoVal = 0;
-    private int deudaVal=0; 
-    private int[] deudaA = new int[3];
-    private String[] tarjetasG = new String[3];
-
+    private int cupoVal = 0, deudaVal=0, r=0;
+    Map<String, Integer> mapDatosT= new HashMap<String, Integer>();
+    
     //private DefaultTableModel modelTabla;
     DefaultTableModel tableModel  = new DefaultTableModel();
     ArrayList<CrearTarjeta> listaTarjeta = new ArrayList<CrearTarjeta>();
@@ -478,6 +479,9 @@ public class VentanaAdministracion extends javax.swing.JFrame {
                if(this.opcion == null){
               JOptionPane.showMessageDialog(null, "Elija el tipo de tarjeta");
           }else{
+          String datT = identi+opcion1;
+          mapDatosT.put(datT, cupoVal);
+          
           //Creacion de la Tarjeta
          GestionDeTarjeta gt = new GestionDeTarjeta();
          CrearTarjeta ct = gt.crearTarjetaCredito(nombre, identi, numTarjeta, cupoVal, fechaCreaci, this.opcion, this.opcion1);
@@ -594,7 +598,8 @@ public class VentanaAdministracion extends javax.swing.JFrame {
         if(opcionE == null){
             JOptionPane.showMessageDialog(null, "Por favor seleccione un tipo de tarjeta");
         }else{
-        if(registroTarjetas.contains(tBuscar)){
+        if(mapDatosT.containsKey(tBuscar)){
+     
             JOptionPane.showMessageDialog(null, "La tarjeta existe, se puede proceder con la acciones");
             bCompra.setEnabled(true);
             bPago.setEnabled(true);
@@ -608,7 +613,6 @@ public class VentanaAdministracion extends javax.swing.JFrame {
     }
 
     
-   
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton bCedula;

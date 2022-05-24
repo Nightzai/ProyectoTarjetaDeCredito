@@ -42,7 +42,7 @@ public class VentanaAdministracion extends javax.swing.JFrame {
     //private DefaultTableModel modelTabla;
     DefaultTableModel tableModel  = new DefaultTableModel();
     ArrayList<CrearTarjeta> listaTarjeta = new ArrayList<CrearTarjeta>();
-    ArrayList registroTarjetas = new ArrayList();
+    
     /**
      * Creates new form VentanaCreacionTarjeta
      */
@@ -488,7 +488,7 @@ public class VentanaAdministracion extends javax.swing.JFrame {
          listaTarjeta.add(ct);
          if (ct != null){
              String newTarjeta = identi+opcion1;
-             registroTarjetas.add(newTarjeta);
+             
              this.cargarTarjetas();
              String arch = ("Titular: "+ct.getTarjeta().getTitular()+"\n"+"Identificacion: "+ct.getTarjeta().getIdenti()+"\n"+"Tipo de Documento: "+ct.getOpcionDocu()+"\n"+"Numero de Tarjeta: "+ct.getNumTarjeta()+"\n"+"Cupo generado: "+cupoVal+"\n"+"Fecha de creacion: "+util.Util.convertirDateString(ct.getFechaCrea())+"\n"+"Tipo de Tarjeta: "+ct.getOpcion()+"\n");
              ope.guardarArchivoPlano(arch);
